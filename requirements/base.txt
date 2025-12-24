@@ -1,0 +1,12 @@
+Django>=5.0
+djangorestframework
+django-cors-headers
+django-allauth
+psycopg2-binary
+redis
+
+# Background jobs (pick one family)
+celery
+django-celery-beat
+
+gunicorn

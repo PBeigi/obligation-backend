@@ -1,0 +1,5 @@
+-r base.txt
+
+python-dotenv
+django-debug-toolbar
+ipython
