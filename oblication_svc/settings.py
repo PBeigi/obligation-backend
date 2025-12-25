@@ -92,14 +92,22 @@ WSGI_APPLICATION = 'oblication_svc.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'obligation_db',
-        'USER': 'postgres',
-        'PASSWORD': 'postgres',
-        'HOST': 'localhost',
-        'PORT': '5432',
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
+
+# For production, use PostgreSQL:
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'obligation_db',
+#         'USER': 'postgres',
+#         'PASSWORD': 'postgres',
+#         'HOST': 'localhost',
+#         'PORT': '5432',
+#     }
+# }
 
 
 # Password validation
@@ -168,7 +176,18 @@ AUTHENTICATION_BACKENDS = [
 
 ACCOUNT_LOGIN_METHODS = {'email'}
 ACCOUNT_SIGNUP_FIELDS = ['email*', 'password1*', 'password2*']
+ACCOUNT_USER_MODEL_USERNAME_FIELD = None  # No username field, use email
+ACCOUNT_EMAIL_VERIFICATION = 'none'  # Skip email verification for social auth
+
+# Social account settings
 SOCIALACCOUNT_AUTO_SIGNUP = True
+SOCIALACCOUNT_LOGIN_ON_GET = True  # Skip confirmation page, directly redirect to Google
+SOCIALACCOUNT_ONLY = True  # Disable password-based authentication
+
+# Redirect URLs after login/logout (temporary - change to localhost:3000 when Next.js is ready)
+LOGIN_REDIRECT_URL = '/api/users/success/'  # Test page showing auth status
+LOGOUT_REDIRECT_URL = '/api/users/success/'  # Test page showing auth status
+ACCOUNT_LOGOUT_REDIRECT_URL = '/api/users/success/'  # Test page showing auth status
 
 # Custom User Model
 AUTH_USER_MODEL = 'users.User'

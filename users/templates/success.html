@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Success</title>
+    <style>
+        body { font-family: Arial; text-align: center; padding: 50px; }
+        .success { color: green; font-size: 24px; }
+        .info { color: #666; margin-top: 20px; }
+    </style>
+</head>
+<body>
+    <div class="success">✅ Authentication Successful!</div>
+    <div class="info">
+        {% if user.is_authenticated %}
+            <p>You're logged in as: <strong>{{ user.email }}</strong></p>
+            <p><a href="/accounts/logout/">Logout</a> | <a href="/admin/">Admin</a> | <a href="/api/users/me/">API Test</a></p>
+        {% else %}
+            <p>You've been logged out.</p>
+            <p><a href="/accounts/google/login/">Login with Google</a></p>
+        {% endif %}
+    </div>
+</body>
+</html>

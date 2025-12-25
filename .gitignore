@@ -54,6 +54,10 @@ Thumbs.db
 .env.local
 .envrc
 
+# Google OAuth credentials
+client_secret*.json
+*_secret*.json
+
 # Celery
 celerybeat-schedule
 celerybeat.pid
