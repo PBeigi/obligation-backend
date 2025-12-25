@@ -16,9 +16,18 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from rest_framework.routers import DefaultRouter
+from obligations.views import ObligationViewSet
+from notifications.views import NotificationViewSet
+
+# API Router
+router = DefaultRouter()
+router.register(r'obligations', ObligationViewSet, basename='obligation')
+router.register(r'notifications', NotificationViewSet, basename='notification')
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('accounts/', include('allauth.urls')),
     path('api/users/', include('users.urls')),
+    path('api/', include(router.urls)),
 ]
